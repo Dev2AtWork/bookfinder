@@ -22,9 +22,9 @@ public final class SearchClientImpl {
             e.printStackTrace();
             return null;
         }
-        uriBuilder.addParameter("key", "AIzaSyBDaKOCQaadsnlVs7YtjHXykWklcO7lgDw")
-                .addParameter("cx", "004520401497623145684:y7hamxrdiet")
-                .addParameter("q", "Dystopia Animal English Novel Pink Floyd");
+        uriBuilder.addParameter("key", args[0])
+                .addParameter("cx", args[1])
+                .addParameter("q", args[2]);
         HttpGet request = null;
         try {
             request = new HttpGet(uriBuilder.build());
