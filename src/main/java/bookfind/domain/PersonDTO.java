@@ -11,32 +11,16 @@ import lombok.Setter;
 @JsonPropertyOrder({
         "image",
         "name",
-        "url",
-        "inlanguage",
-        "bookformat",
-        "awards",
-        "isbn",
-        "numberofpages"
+        "url"
 })
 @Getter
 @Setter
-@Builder(toBuilder = true)
-public class BookDTO {
+@Builder
+public class PersonDTO {
     @JsonProperty("image")
     public String image;
     @JsonProperty("name")
     public String name;
     @JsonProperty("url")
     public String url;
-    @JsonProperty("inlanguage")
-    public String inlanguage;
-    @JsonProperty("bookformat")
-    public String bookformat;
-    @JsonProperty("awards")
-    public String awards;
-    @JsonProperty("isbn")
-    public String isbn;
-    @JsonProperty("numberofpages")
-    public String numberofpages;
-
 }
