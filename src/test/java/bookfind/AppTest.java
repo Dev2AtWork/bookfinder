@@ -1,22 +1,14 @@
 package bookfind;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import data.QueryEnums;
+import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class AppTest {
 
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "Two years in Calcutta",
-            "Perumal Murugan rural",
-            "Gail Honeyman",
-            "Book based in Matunga 1990s",
-            "Israeli historian 21st century",
-            "dev patel australia",
-            "Iranian Graphic Novel",
-            "Dystopian English Novel"
-    })
-    public void firstDummyTest(String args) {
-        App.main(new String[]{args});
+    @Test
+    public void shouldGetMatchingBookResponse(QueryEnums data) {
+        App.main(new String[]{QueryEnums.TEST_DATA_9.getQuery()});
+        Assertions.assertTrue(true);
     }
 }

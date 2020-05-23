@@ -10,29 +10,32 @@ import org.apache.http.impl.client.HttpClients;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.function.Function;
 
+import static bookfind.utility.YamlUtils.CONFIG_SUPPLIER;
+
 public final class SearchClientImpl {
-    public static Function<String[], ResponseDomainDTO> searchClient = (args) -> {
+    public static Function<HashMap<String, String>, ResponseDomainDTO> searchClient = (args) -> {
         CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
         URIBuilder uriBuilder = null;
         try {
-            uriBuilder = new URIBuilder("https://www.googleapis.com/customsearch/v1");
+            uriBuilder = new URIBuilder(CONFIG_SUPPLIER.get().url());
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return null;
         }
-        uriBuilder.addParameter("key", args[0])
-                .addParameter("cx", args[1])
-                .addParameter("q", args[2]);
-        HttpGet request = null;
+        uriBuilder.addParameter("key", args.get("api.key"))
+                .addParameter("cx", args.get("api.cx"))
+                .addParameter("q", args.get("api.q"));
+        HttpGet request;
         try {
             request = new HttpGet(uriBuilder.build());
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return null;
         }
-        CloseableHttpResponse response = null;
+        CloseableHttpResponse response;
         try {
             response = closeableHttpClient.execute(request);
         } catch (IOException e) {
