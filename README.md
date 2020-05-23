@@ -10,7 +10,7 @@ Update your API_KEY and Custom Search Engine details under
 #### More Info on Custom Search
 https://developers.google.com/custom-search/docs/overview
 
-###Set up
+### Set up
  * Clone the repository.
  * Create developer account and custom search engine. ( _This has been designed and tested using an engine to find results from goodreads.com_ )
  * Build project :  ```mvn clean install```
