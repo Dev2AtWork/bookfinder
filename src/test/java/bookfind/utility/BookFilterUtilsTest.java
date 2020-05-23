@@ -17,7 +17,6 @@ public class BookFilterUtilsTest implements SearchResultString {
     public void validateFilter() throws JsonProcessingException {
         ResponseDomainDTO responseDomainDTO = new ObjectMapper().readValue(SEARCH_STRING, ResponseDomainDTO.class);
         List<ItemDTO> filteredProducts = responseDomainDTO.getItems().stream()
-                .filter(item -> bookLink.apply(item))
                 .filter(item -> isABook.apply(item))
                 .filter(item -> isHardCoverPaperBackOrKindle.apply(item))
                 .collect(Collectors.toList());

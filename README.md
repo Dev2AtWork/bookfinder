@@ -1,6 +1,6 @@
 # Book Finder Application
 
-System to find names of books from Goodreads based on trivia, plot, movie adaptation, author, awards. The system is 
+System to find names of books from Goodreads based on trivia, plot, movie adaptation, author, awards, quotes. The system is 
 designed using Google Search API results, with custom filtering criteria.
 
 ## Pre-Requisite

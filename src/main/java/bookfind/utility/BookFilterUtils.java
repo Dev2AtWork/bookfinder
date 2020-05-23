@@ -13,11 +13,12 @@ import static java.lang.Boolean.FALSE;
 import static java.util.Objects.isNull;
 
 public final class BookFilterUtils {
-    public static Function<ItemDTO, Boolean> bookLink = (itemDTO) ->
-            (itemDTO.getLink().contains("https://www.goodreads.com/book/show/"));
+
 
     public static Function<ItemDTO, Boolean> isABook = (itemDTO) ->
-            !(itemDTO.getTitle().contains("NOT A BOOK"));
+            !Objects.isNull(itemDTO.getPagemap().getPerson())
+                    && !itemDTO.getPagemap().getPerson().stream().findFirst()
+                    .get().getName().contains("NOT A BOOK");
 
     public static Function<ItemDTO, Boolean> isHardCoverPaperBackOrKindle = (itemDTO) ->
          isNull(itemDTO.getPagemap().getBook()) ? FALSE :
@@ -26,7 +27,6 @@ public final class BookFilterUtils {
 
     public static Function<ResponseDomainDTO, AppResponseDTO> filterResponse = (responseDomainDTO -> {
         ItemDTO item = responseDomainDTO.getItems().stream()
-                .filter(itemDTO -> bookLink.apply(itemDTO))
                 .filter(itemDTO -> isABook.apply(itemDTO))
                 .filter(itemDTO -> isHardCoverPaperBackOrKindle.apply(itemDTO))
                 .findFirst().orElse(null);
